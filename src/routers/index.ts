@@ -1,7 +1,9 @@
-import { Router } from "express";
-import { participantsRouter } from "./participants-router";
+import { Router } from 'express';
+import { participantsRouter } from './participants-router';
+import { gamesRouter } from './games-router';
 
-const router = Router()
-router.use(participantsRouter)
+const router = Router();
+router.use(participantsRouter);
+router.use(gamesRouter);
 
-export default router
+export default router;
