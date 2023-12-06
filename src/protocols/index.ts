@@ -12,3 +12,16 @@ export type GameResultBody = {
   homeTeamScore: number;
   awayTeamScore: number;
 };
+
+export type BetBody = {
+  homeTeamScore: number;
+  awayTeamScore: number;
+  amountBet: number;
+  gameId: number;
+  participantId: number;
+}
+
+export type ApplicationError = {
+  name: string;
+  message: string;
+};
