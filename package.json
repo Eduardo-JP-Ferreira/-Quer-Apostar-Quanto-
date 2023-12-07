@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "npx tsc",
+    "build": "tsc -p tsconfig.build.json",
     "migration:run": "prisma migrate deploy",
     "start": "npm run migration:run && node dist/src/server.ts",
     "dev": "nodemon src/server.ts",
