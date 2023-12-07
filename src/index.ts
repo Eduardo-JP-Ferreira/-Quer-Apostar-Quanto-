@@ -9,7 +9,5 @@ app
   .get('/health', (_req, res) => res.send('OK!!'))
   .use('/', router);
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is up and running on port ${port}`);
-});
+
+export default app;
