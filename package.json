@@ -6,11 +6,12 @@
   "scripts": {
     "build": "tsc",
     "migration:run": "prisma migrate deploy",
-    "start": "npm run migration:run && node dist/src/server.ts",
+    "start": "npm run migration:run && node dist/src/server.js",
     "dev": "nodemon src/server.ts",
     "test:load-envs": "dotenv -e .env.test",
     "test": "npm run test:load-envs -- jest -- --coverage --passWithNoTests --runInBand",
-    "test:migration:run": "npm run test:load-envs prisma migrate deploy"
+    "test:migration:run": "npm run test:load-envs prisma migrate deploy",
+    "test:report": "dotenv -e .env.test prisma migrate deploy & dotenv -e .env.test jest -- --coverage --runInBand --coverageReporters=json-summary --coverageDirectory=coverage --collectCoverageFrom='**/*.ts'"
   },
   "keywords": [],
   "author": "",
