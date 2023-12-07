@@ -45,6 +45,9 @@ async function postGameResult(req: Request, res: Response) {
     );
     return res.status(httpStatus.CREATED).send(game);
   } catch (error) {
+    if (error.name === 'NotFoundError') {
+      return res.status(httpStatus.NOT_FOUND).send(error.message);
+    }
     return res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }

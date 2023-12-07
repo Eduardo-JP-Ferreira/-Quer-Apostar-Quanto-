@@ -119,3 +119,38 @@ describe('POST /games', () => {
   });
 });
 
+describe('POST /games/:id/finish', () => {
+  it('should finish game ', async () => {
+    const game = await createRandomGame();
+
+    const response = await server.post(`/games/${game.id}/finish`).send({
+      homeTeamScore: 1,
+      awayTeamScore: 1
+    });
+
+    expect(response.status).toBe(httpStatus.CREATED);
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        id: game.id,
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+        homeTeamName: expect.any(String),
+        awayTeamName: expect.any(String),
+        isFinished: true,
+        homeTeamScore: 1,
+        awayTeamScore: 1,
+      }),
+    );
+  });
+
+  it('should respond with status 404 when there is no game with the id', async () => {
+    const game = await createRandomGame();
+
+    const response = await server.post(`/games/${game.id + 1}/finish`).send({
+      homeTeamScore: 1,
+      awayTeamScore: 1
+    });
+
+    expect(response.status).toBe(httpStatus.BAD_REQUEST);
+  });
+});
