@@ -20,6 +20,7 @@ describe('POST /bets', () => {
   it('should create a game ', async () => {
     const participant = await createRandomParticipant();
     const game = await createRandomGame();
+
     const response = await server.post('/bets').send({
       homeTeamScore: 1,
       awayTeamScore: 1,
@@ -48,6 +49,47 @@ describe('POST /bets', () => {
     const response = await server.post('/bets');
 
     expect(response.status).toBe(httpStatus.BAD_REQUEST);
+
+    const bets = await prisma.bet.findMany();
+    expect(bets).toHaveLength(0);
+  });
+
+  it('should not create a bet and return status 404 ', async () => {
+    const participant = await createRandomParticipant();
+    const game = await createRandomGame();
+
+    const response = await server.post('/bets').send({
+      homeTeamScore: 1,
+      awayTeamScore: 1,
+      amountBet: 1000,
+      gameId: (game.id + 5),
+      participantId: participant.id,
+    });
+
+    expect(response.status).toBe(httpStatus.NOT_FOUND);
+
+    const bets = await prisma.bet.findMany();
+    expect(bets).toHaveLength(0);
+  });
+
+  it('should not create a bet and return status 401 ', async () => {
+    const participant = await createRandomParticipant();
+    const game = await createRandomGame();
+
+    const finish = await server.post(`/games/${game.id}/finish`).send({
+      homeTeamScore: 1,
+      awayTeamScore: 1
+    });
+
+    const response = await server.post('/bets').send({
+      homeTeamScore: 1,
+      awayTeamScore: 1,
+      amountBet: 1000,
+      gameId: game.id,
+      participantId: participant.id,
+    });
+
+    expect(response.status).toBe(httpStatus.UNAUTHORIZED);
 
     const bets = await prisma.bet.findMany();
     expect(bets).toHaveLength(0);
