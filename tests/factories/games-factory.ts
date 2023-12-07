@@ -14,5 +14,5 @@ export async function createRandomGame() {
   const homeTeamName = faker.word.noun({ length: { min: 5, max: 7 }, strategy: "closest" })
   const awayTeamName = faker.word.noun({ length: { min: 5, max: 7 }, strategy: "closest" })
 
-  return await createGame(homeTeamName, awayTeamName);
+  return createGame(homeTeamName, awayTeamName);
 }

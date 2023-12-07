@@ -7,6 +7,10 @@ import { cleanDb } from '../ultis';
 
 const server = supertest(app);
 
+beforeAll(async () => {
+  await cleanDb()
+});
+
 beforeEach(async () => {
   await cleanDb()
 });

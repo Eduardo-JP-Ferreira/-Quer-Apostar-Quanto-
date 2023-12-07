@@ -14,5 +14,5 @@ export async function createRandomParticipant() {
   const name = faker.person.firstName();
   const balance = faker.number.int({ min: 1000, max: 1000000 });
 
-  return await createParticipant(name, balance);
+  return createParticipant(name, balance);
 }

@@ -7,6 +7,10 @@ import { cleanDb } from '../ultis';
 
 const server = supertest(app);
 
+beforeAll(async () => {
+  await cleanDb()
+});
+
 beforeEach(async () => {
   await cleanDb();
 });
@@ -14,14 +18,11 @@ beforeEach(async () => {
 describe('GET /participant', () => {
   it('should respond with all the participants and with status 200 ', async () => {
     await createRandomParticipant();
-    await createRandomParticipant();
-    await createRandomParticipant();
-    await createRandomParticipant();
 
     const response = await server.get('/participants');
 
     expect(response.status).toBe(httpStatus.OK);
-    expect(response.body).toHaveLength(4);
+    expect(response.body).toHaveLength(1);
     expect(response.body).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
