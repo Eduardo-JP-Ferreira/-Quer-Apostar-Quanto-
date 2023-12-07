@@ -19,13 +19,13 @@ Desafio técnico, onde deveria ser implementado o back-end de um sistema de apos
 1. Clone the Repository: Clone this repository to your local machine.
 
 ```
-git clone https://github.com/Eduardo-JP-Ferreira/-Quer-Apostar-Quanto.git
+https://github.com/Eduardo-JP-Ferreira/-Quer-Apostar-Quanto-.git
 ```
 
 2. Install Dependencies: Navigate to the project directory and install the required dependencies.
 
 ```
-cd -Quer-Apostar-Quanto
+cd -Quer-Apostar-Quanto-
 npm install
 ```
 
