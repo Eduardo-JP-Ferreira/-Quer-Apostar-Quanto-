@@ -10,9 +10,14 @@ Desafio técnico, onde deveria ser implementado o back-end de um sistema de apos
 <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white"/>
 <img src="https://img.shields.io/badge/.ENV-ECD53F.svg?style=for-the-badge&logo=dotenv&logoColor=black"/>
 <img src="https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white"/>
-</p>
 <img src="https://img.shields.io/badge/Prisma-2D3748.svg?style=for-the-badge&logo=Prisma&logoColor=white"/>
 </p>
+
+## API deploy link
+
+```
+https://quer-apostar-quanto-9a4a.onrender.com
+```
 
 ## How to run for development
 
