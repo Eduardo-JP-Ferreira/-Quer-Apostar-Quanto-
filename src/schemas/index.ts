@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { BetBody, GameBody, ParticipantBody } from '../protocols';
+import { BetBody, GameBody, GameResultBody, ParticipantBody } from '../protocols';
 
 export const participantSchema = Joi.object<ParticipantBody>({
   name: Joi.string().required(),
@@ -10,6 +10,11 @@ export const gameSchema = Joi.object<GameBody>({
   homeTeamName: Joi.string().required(),
   awayTeamName: Joi.string().required(),
 });
+
+export const gameResultSchema = Joi.object<GameResultBody>({
+  homeTeamScore: Joi.number().required(),
+  awayTeamScore: Joi.number().required(),
+})
 
 export const betSchema = Joi.object<BetBody>({
   homeTeamScore: Joi.number().required(),

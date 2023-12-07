@@ -35,10 +35,25 @@ async function postGame(req: Request, res: Response) {
   }
 }
 
+async function postGameResult(req: Request, res: Response) {
+  const { homeTeamScore, awayTeamScore } = req.body;
+  const { id } = req.params;
+  try {
+    const game = await gamesService.postGameResult(
+      { homeTeamScore, awayTeamScore },
+      Number(id)
+    );
+    return res.status(httpStatus.CREATED).send(game);
+  } catch (error) {
+    return res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}
+
 const gamesController = {
   getGames,
   getGameById,
   postGame,
+  postGameResult,
 };
 
 export default gamesController;
