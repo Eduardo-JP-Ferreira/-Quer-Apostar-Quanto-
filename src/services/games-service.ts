@@ -8,7 +8,9 @@ async function getGames() {
 }
 
 async function getGameById(id: number) {
-  return await gamesRepository.findGameWithBetById(id);
+  const game = await gamesRepository.findGameWithBetById(id);
+  if (!game) throw notFoundError('Game not Found');
+  return game;
 }
 
 async function postGame(game: GameBody) {

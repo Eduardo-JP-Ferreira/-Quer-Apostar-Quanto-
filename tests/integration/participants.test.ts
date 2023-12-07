@@ -2,15 +2,13 @@ import httpStatus from 'http-status';
 import supertest from 'supertest';
 import app from '../../src';
 import prisma from '../../src/database';
-import {
-  createParticipant,
-  createRandomParticipant,
-} from '../factories/participants-factory';
+import { createRandomParticipant } from '../factories/participants-factory';
+import { cleanDb } from '../ultis';
 
 const server = supertest(app);
 
 beforeEach(async () => {
-  await prisma.participant.deleteMany();
+  await cleanDb();
 });
 
 describe('GET /participant', () => {
